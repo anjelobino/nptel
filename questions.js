@@ -1109,6 +1109,566 @@ const WEEK2_QUESTIONS = [
   }
 ];
 
+// Week 4 Question Bank: Probability & Bayesian Learning (45 Questions)
+// Sourced directly from Module 4 Practice Assessment (Prof. Sudeshna Sarkar, IIT Kharagpur)
+const WEEK4_QUESTIONS = [
+  // PART 1: PROBABILITY BASICS & RANDOM VARIABLES (Q1 – Q6)
+  {
+    id: 1,
+    question: "An experiment consists of tossing a fair coin 3 times. What is the probability of the event C = 'at least two heads appear'?",
+    options: [
+      "1/4",
+      "3/8",
+      "1/2",
+      "5/8"
+    ],
+    correctAnswer: "1/2",
+    explanation: "The sample space has 2^3 = 8 equally likely outcomes: {HHH, HHT, HTH, HTT, THH, THT, TTH, TTT}. The event C ('at least two heads') contains {HHH, HHT, HTH, THH}, so |C| = 4. Therefore, P(C) = 4/8 = 1/2."
+  },
+  {
+    id: 2,
+    question: "Which of the following statements is strictly guaranteed by the fundamental axioms of probability for any events A and B?",
+    options: [
+      "If A ⊆ B, then P(A) ≥ P(B)",
+      "P(A ∪ B) = P(A) + P(B) + P(A ∩ B)",
+      "If A ⊆ B, then P(A) ≤ P(B)",
+      "P(A) + P(A^c) > 1"
+    ],
+    correctAnswer: "If A ⊆ B, then P(A) ≤ P(B)",
+    explanation: "By the monotonicity property of probability derived from Kolmogorov's axioms: if event A is a subset of event B (A ⊆ B), then P(A) ≤ P(B). Also, P(A ∪ B) = P(A) + P(B) - P(A ∩ B) and P(A) + P(A^c) = 1."
+  },
+  {
+    id: 3,
+    question: "A random variable X is defined formally as a function that:",
+    options: [
+      "Maps probability values to sample outcomes",
+      "Maps outcomes from the sample space Ω into real scalar values",
+      "Converts continuous density functions into integers",
+      "Calculates the empirical frequency of trials"
+    ],
+    correctAnswer: "Maps outcomes from the sample space Ω into real scalar values",
+    explanation: "Formally in probability theory, a random variable X is a measurable function X: Ω → ℝ that maps every elementary outcome ω in sample space Ω to a real number."
+  },
+  {
+    id: 4,
+    question: "For a discrete random variable X having probability mass function P(X = xi), which of the following is true for distinct outcomes xi ≠ xj?",
+    options: [
+      "P(X = xi ∩ X = xj) > 0",
+      "P(X = xi ∩ X = xj) = 0",
+      "P(X = xi ∪ X = xj) = P(X = xi) · P(X = xj)",
+      "∑i P(X = xi) = ∞"
+    ],
+    correctAnswer: "P(X = xi ∩ X = xj) = 0",
+    explanation: "In any single trial, the random variable X takes exactly one realization. Distinct values {X = xi} and {X = xj} are mutually disjoint events, meaning P(X = xi ∩ X = xj) = 0."
+  },
+  {
+    id: 5,
+    question: "If random variable X follows a Binomial distribution X ~ Bin(n, p), the probability mass function P(X = i) is:",
+    options: [
+      "(1/n) · p^i",
+      "n! · p^i (1 - p)^(n-i)",
+      "C(n, i) · p^i (1 - p)^(n-i)",
+      "C(n, i) · p^(n-i) (1 - p)^n"
+    ],
+    correctAnswer: "C(n, i) · p^i (1 - p)^(n-i)",
+    explanation: "The Binomial PMF for observing exactly i successes in n independent Bernoulli trials with success probability p is: P(X = i) = C(n, i) p^i (1 - p)^(n-i), where C(n, i) = n! / (i!(n - i)!)."
+  },
+  {
+    id: 6,
+    question: "By the Law of Total Probability, given discrete random variables X and Y, the marginal probability P(X = xi) is obtained by:",
+    options: [
+      "∑j P(X = xi | Y = yj) P(Y = yj)",
+      "∏j P(X = xi, Y = yj)",
+      "∑j P(Y = yj | X = xi)",
+      "P(X = xi | Y = y1) / P(Y = y1)"
+    ],
+    correctAnswer: "∑j P(X = xi | Y = yj) P(Y = yj)",
+    explanation: "The Law of Total Probability states that the marginal distribution is obtained by marginalizing over Y: P(X = xi) = ∑j P(X = xi, Y = yj) = ∑j P(X = xi | Y = yj) P(Y = yj)."
+  },
+
+  // PART 1: CONTINUOUS DISTRIBUTIONS (Q7 – Q12)
+  {
+    id: 7,
+    question: "Two random variables X and Y are statistically independent if and only if:",
+    options: [
+      "P(X = x ∩ Y = y) = P(X = x) + P(Y = y)",
+      "P(X = x | Y = y) = P(X = x) for all x, y",
+      "P(X = x ∩ Y = y) = 0",
+      "P(X = x | Y = y) = P(Y = y | X = x)"
+    ],
+    correctAnswer: "P(X = x | Y = y) = P(X = x) for all x, y",
+    explanation: "Independence means that conditioning on Y provides no information about X: P(X = x | Y = y) = P(X = x), which is also equivalent to the product rule P(X = x, Y = y) = P(X = x) P(Y = y)."
+  },
+  {
+    id: 8,
+    question: "Which of the following conditions must hold for any valid probability density function f(x) of a continuous random variable X?",
+    options: [
+      "0 ≤ f(x) ≤ 1 for all x",
+      "f(x) ≥ 0 for all x, and ∫_{-∞}^{∞} f(x) dx = 1",
+      "f(x) = d/dx [P(X ≥ x)]",
+      "f(x) cannot exceed 0.5 at any peak"
+    ],
+    correctAnswer: "f(x) ≥ 0 for all x, and ∫_{-∞}^{∞} f(x) dx = 1",
+    explanation: "A continuous probability density function (PDF) must be non-negative everywhere (f(x) ≥ 0) and the total area under the curve must equal 1 (∫ f(x) dx = 1). Note that f(x) can exceed 1 locally because it represents density, not discrete probability."
+  },
+  {
+    id: 9,
+    question: "If F_X(x) is the Cumulative Distribution Function (CDF) of a continuous random variable X, how is the probability density function f(x) related to it?",
+    options: [
+      "f(x) = ∫_{-∞}^{x} F_X(t) dt",
+      "f(x) = 1 - F_X(x)",
+      "f(x) = d/dx [F_X(x)]",
+      "f(x) = [F_X(x)]^2"
+    ],
+    correctAnswer: "f(x) = d/dx [F_X(x)]",
+    explanation: "Since the CDF is F_X(x) = ∫_{-∞}^{x} f(t) dt, by the Fundamental Theorem of Calculus, the PDF is its first derivative: f(x) = d/dx [F_X(x)] = F'_X(x)."
+  },
+  {
+    id: 10,
+    question: "The probability density function of a 1D Normal distribution X ~ N(μ, σ^2) is given by:",
+    options: [
+      "(1 / (σ √(2π))) · exp{ -(x - μ) / (2σ) }",
+      "(1 / (σ √(2π))) · exp{ -(x - μ)^2 / (2σ^2) }",
+      "(1 / (2π σ^2)) · exp{ -(x - μ)^2 / σ^2 }",
+      "√(2π) σ · exp{ -(x - μ)^2 / (2σ^2) }"
+    ],
+    correctAnswer: "(1 / (σ √(2π))) · exp{ -(x - μ)^2 / (2σ^2) }",
+    explanation: "The standard univariate Normal (Gaussian) distribution density function with mean μ and variance σ^2 is f(x) = (1 / (σ √(2π))) · exp{ -(x - μ)^2 / (2σ^2) }."
+  },
+  {
+    id: 11,
+    question: "Given an unbiased sample variance estimator for N independent samples x1, ..., xN, what is the denominator used when estimating σ^2 from sample mean x̄?",
+    options: [
+      "N",
+      "N - 1",
+      "N + 1",
+      "2N"
+    ],
+    correctAnswer: "N - 1",
+    explanation: "Bessel's correction replaces N with N - 1 in the denominator: s^2 = 1/(N - 1) ∑ (xi - x̄)^2. This corrects the negative bias that arises because the sample mean x̄ is closer to the sample points than the true population mean μ."
+  },
+  {
+    id: 12,
+    question: "What is the covariance term in the exponent of a multivariate normal distribution of dimension d with covariance matrix Σ?",
+    options: [
+      "-(1/2) (x - μ)^T Σ (x - μ)",
+      "-(1/2) (x - μ)^T Σ^-1 (x - μ)",
+      "-(1/2) |Σ|^-1/2 (x - μ)",
+      "-(d/2) (x - μ)^T Σ^-1 (x - μ)"
+    ],
+    correctAnswer: "-(1/2) (x - μ)^T Σ^-1 (x - μ)",
+    explanation: "In the multivariate Gaussian density, the quadratic form in the exponent is -(1/2) (x - μ)^T Σ^-1 (x - μ), where Σ^-1 is the inverse covariance (precision) matrix."
+  },
+
+  // PART 2: BAYESIAN LEARNING & HYPOTHESES (Q13 – Q18)
+  {
+    id: 13,
+    question: "In Bayes theorem, P(h | D) = [ P(D | h) P(h) ] / P(D), the term P(D | h) represents:",
+    options: [
+      "Posterior probability of hypothesis h",
+      "Prior probability of hypothesis h",
+      "Likelihood of the data D given hypothesis h",
+      "Marginal evidence of the data D"
+    ],
+    correctAnswer: "Likelihood of the data D given hypothesis h",
+    explanation: "P(D | h) denotes the likelihood of observing the training data D assuming hypothesis h holds true."
+  },
+  {
+    id: 14,
+    question: "The Maximum A Posteriori (MAP) hypothesis h_MAP is defined as:",
+    options: [
+      "arg max_{h ∈ H} P(D | h)",
+      "arg max_{h ∈ H} P(h)",
+      "arg max_{h ∈ H} [ P(D | h) P(h) ]",
+      "arg max_{h ∈ H} [ P(D | h) / P(h) ]"
+    ],
+    correctAnswer: "arg max_{h ∈ H} [ P(D | h) P(h) ]",
+    explanation: "h_MAP = arg max_{h ∈ H} P(h | D) = arg max_{h ∈ H} [ P(D | h) P(h) / P(D) ]. Since P(D) is independent of h, this simplifies to arg max_{h ∈ H} [ P(D | h) P(h) ]."
+  },
+  {
+    id: 15,
+    question: "Under what condition does the Maximum A Posteriori (MAP) hypothesis become strictly equivalent to the Maximum Likelihood (ML) hypothesis?",
+    options: [
+      "When the data likelihood follows a Gaussian distribution",
+      "When every hypothesis in hypothesis space H is equally probable a priori",
+      "When the number of training examples approaches zero",
+      "When the feature attributes are conditionally independent"
+    ],
+    correctAnswer: "When every hypothesis in hypothesis space H is equally probable a priori",
+    explanation: "If all hypotheses have uniform prior probability P(h) = constant, then arg max [P(D | h) P(h)] = arg max P(D | h) = h_ML."
+  },
+  {
+    id: 16,
+    question: "A cancer diagnostic test has true positive rate P(+ | cancer) = 0.98 and true negative rate P(- | ¬cancer) = 0.97. The disease prior is P(cancer) = 0.008. What is the unnormalized joint probability P(+ | cancer) P(cancer)?",
+    options: [
+      "0.02976",
+      "0.00784",
+      "0.98000",
+      "0.03760"
+    ],
+    correctAnswer: "0.00784",
+    explanation: "P(+ | cancer) P(cancer) = 0.98 × 0.008 = 0.00784."
+  },
+  {
+    id: 17,
+    question: "In the same cancer problem (from Q16), what is the unnormalized quantity P(+ | ¬cancer) P(¬cancer)? (Note: P(¬cancer) = 0.992 and false positive rate is 1 - 0.97 = 0.03)",
+    options: [
+      "0.02976",
+      "0.00784",
+      "0.00024",
+      "0.96224"
+    ],
+    correctAnswer: "0.02976",
+    explanation: "P(+ | ¬cancer) P(¬cancer) = (1 - 0.97) × 0.992 = 0.03 × 0.992 = 0.02976."
+  },
+  {
+    id: 18,
+    question: "Based on the calculations in Q16 and Q17, what is the MAP diagnosis for a patient whose test is positive?",
+    options: [
+      "Cancer, because the test accuracy is 98%",
+      "¬Cancer, because P(+ , ¬cancer) = 0.02976 > P(+ , cancer) = 0.00784",
+      "Undecidable without knowing the sample size",
+      "Both are equally probable"
+    ],
+    correctAnswer: "¬Cancer, because P(+ , ¬cancer) = 0.02976 > P(+ , cancer) = 0.00784",
+    explanation: "Comparing unnormalized posteriors: P(+ , ¬cancer) = 0.02976 is roughly 3.8 times larger than P(+ , cancer) = 0.00784. Thus, the MAP diagnosis is ¬cancer (the patient is more likely to be a false positive due to disease rarity)."
+  },
+
+  // PART 3: MAXIMUM LIKELIHOOD, LEAST SQUARES & BAYES OPTIMAL (Q19 – Q24)
+  {
+    id: 19,
+    question: "When learning a continuous target function f(x) from noisy samples di = f(xi) + ei, the Maximum Likelihood hypothesis h_ML minimizes the sum of squared errors provided that noise ei is:",
+    options: [
+      "Uniformly distributed in [-1, 1]",
+      "Independent and identically distributed Normal with zero mean and constant variance",
+      "Dependent upon the target magnitude f(xi)",
+      "Poisson distributed with rate λ = σ^2"
+    ],
+    correctAnswer: "Independent and identically distributed Normal with zero mean and constant variance",
+    explanation: "Assuming noise terms ei are i.i.d. Gaussian N(0, σ^2), maximizing the log-likelihood of observations di is mathematically identical to minimizing the sum of squared errors."
+  },
+  {
+    id: 20,
+    question: "During the derivation of h_ML under i.i.d. Gaussian noise, maximizing the likelihood is equivalent to minimizing which objective function?",
+    options: [
+      "∑i=1^m |di - h(xi)|",
+      "∑i=1^m (di - h(xi))^2",
+      "∏i=1^m (di - h(xi))^2",
+      "∑i=1^m ln(di - h(xi))"
+    ],
+    correctAnswer: "∑i=1^m (di - h(xi))^2",
+    explanation: "The log-likelihood expression contains -1/(2σ^2) ∑ (di - h(xi))^2. Dropping constants and flipping the sign turns maximization into minimizing the sum of squared errors: ∑ (di - h(xi))^2."
+  },
+  {
+    id: 21,
+    question: "Why is the Bayes Optimal Classifier defined by arg max_{vj ∈ V} ∑_{hi ∈ H} P(vj | hi) P(hi | D) considered 'optimal'?",
+    options: [
+      "It trains faster than any other classification model",
+      "No other classifier using the same hypothesis space and prior knowledge can outperform it on average",
+      "It always selects a single hypothesis that has zero training error",
+      "It eliminates the need for prior probabilities"
+    ],
+    correctAnswer: "No other classifier using the same hypothesis space and prior knowledge can outperform it on average",
+    explanation: "By marginalizing over all hypotheses weighted by their posterior probabilities, the Bayes Optimal Classifier minimizes the expected prediction error over new instances."
+  },
+  {
+    id: 22,
+    question: "Consider three hypotheses: P(h1|D) = 0.4, P(h2|D) = 0.3, P(h3|D) = 0.3. For an instance x, predictions are h1(x) = +, h2(x) = -, h3(x) = -. What are the predictions of h_MAP and the Bayes Optimal Classifier respectively?",
+    options: [
+      "h_MAP: + ; Bayes Optimal: +",
+      "h_MAP: - ; Bayes Optimal: -",
+      "h_MAP: + ; Bayes Optimal: -",
+      "h_MAP: - ; Bayes Optimal: +"
+    ],
+    correctAnswer: "h_MAP: + ; Bayes Optimal: -",
+    explanation: "h_MAP is the hypothesis with the highest posterior: h1 (0.4), so h_MAP predicts '+'. But the Bayes Optimal Classifier sums posterior votes for each class: P(+) = 0.4, while P(-) = P(h2|D) + P(h3|D) = 0.3 + 0.3 = 0.6. Because 0.6 > 0.4, Bayes Optimal predicts '-'."
+  },
+  {
+    id: 23,
+    question: "What is the primary practical disadvantage of the Bayes Optimal Classifier that motivates the use of approximations like the Gibbs algorithm?",
+    options: [
+      "It suffers from severe underfitting on continuous data",
+      "It is computationally prohibitive when the hypothesis space H is large",
+      "It fails whenever the prior distribution is uniform",
+      "Its predictions are non-deterministic"
+    ],
+    correctAnswer: "It is computationally prohibitive when the hypothesis space H is large",
+    explanation: "Computing the Bayes Optimal classification requires evaluating every hypothesis in H and weighting by its posterior, which becomes computationally intractable when H is vast or infinite."
+  },
+  {
+    id: 24,
+    question: "Under the theorem proved by Haussler et al. (1994), what is the upper bound on the expected error of the Gibbs algorithm relative to the Bayes Optimal Classifier?",
+    options: [
+      "E[error_Gibbs] ≤ 0.5 · E[error_BayesOpt]",
+      "E[error_Gibbs] ≤ E[error_BayesOpt]",
+      "E[error_Gibbs] ≤ 2 · E[error_BayesOpt]",
+      "E[error_Gibbs] ≤ e^2 · E[error_BayesOpt]"
+    ],
+    correctAnswer: "E[error_Gibbs] ≤ 2 · E[error_BayesOpt]",
+    explanation: "Haussler et al. (1994) showed that sampling a single hypothesis according to its posterior distribution (Gibbs algorithm) yields an expected error at most twice that of the Bayes Optimal classifier: E[error_Gibbs] ≤ 2 · E[error_BayesOpt]."
+  },
+
+  // PART 4: NAÏVE BAYES CLASSIFIER (Q25 – Q30)
+  {
+    id: 25,
+    question: "What is the foundational assumption made by the Naïve Bayes classifier that simplifies the computation of P(X1, ..., Xn | Y)?",
+    options: [
+      "Features Xi are mutually independent of the class Y",
+      "Features Xi are conditionally independent of each other given the class label Y",
+      "All attributes follow a standard Gaussian distribution",
+      "The prior probabilities of all classes are identical"
+    ],
+    correctAnswer: "Features Xi are conditionally independent of each other given the class label Y",
+    explanation: "The Naïve Bayes assumption states that all feature attributes are conditionally independent given the class label: P(X1, ..., Xn | Y) = ∏i=1^n P(Xi | Y)."
+  },
+  {
+    id: 26,
+    question: "If a discrete attribute Xi has J distinct values and class Y has K categories, how many independent conditional parameters P(Xi = x | Y = y) must be estimated for that feature across all classes?",
+    options: [
+      "K · (J - 1)",
+      "K^J",
+      "J · (K - 1)",
+      "J · K"
+    ],
+    correctAnswer: "K · (J - 1)",
+    explanation: "For each class y, the probabilities ∑_{x} P(Xi = x | Y = y) must sum to 1, leaving J - 1 free (independent) parameters. Across K classes, the total number of independent parameters is K · (J - 1)."
+  },
+  {
+    id: 27,
+    question: "In the 14-day PlayTennis dataset (9 Yes, 5 No), the attribute Outlook is 'Overcast' in 4 'Yes' days and 0 'No' days. What is the MLE estimate of P(Outlook = Overcast | Play = No)?",
+    options: [
+      "4/14",
+      "0/5 = 0",
+      "1/5",
+      "4/9"
+    ],
+    correctAnswer: "0/5 = 0",
+    explanation: "The Maximum Likelihood Estimate is the empirical count ratio: Count(Outlook=Overcast ∧ Play=No) / Count(Play=No) = 0 / 5 = 0."
+  },
+  {
+    id: 28,
+    question: "When using the Maximum Likelihood Estimate (MLE), if an attribute value never appears with a particular class in training, what severe issue occurs during test-time classification?",
+    options: [
+      "The prior probability of that class becomes negative",
+      "The entire class-conditional posterior product evaluates to zero, wiping out all other feature evidence",
+      "The algorithm enters an infinite recursion loop",
+      "Variance becomes infinite"
+    ],
+    correctAnswer: "The entire class-conditional posterior product evaluates to zero, wiping out all other feature evidence",
+    explanation: "Because Naïve Bayes computes the posterior via a product ∏ P(Xi | Y), a single zero probability forces the entire posterior product to zero, regardless of how strongly all other features support that class."
+  },
+  {
+    id: 29,
+    question: "To prevent zero probability probabilities in discrete Naïve Bayes, smoothing is applied: θ̂ijk = [ #D{Xi = xij ∧ Y = yk} + l ] / [ #D{Y = yk} + l · M ]. What does M represent?",
+    options: [
+      "Total number of training instances in D",
+      "The number of distinct classes in Y",
+      "The number of possible distinct values that attribute Xi can take",
+      "The regularization strength parameter"
+    ],
+    correctAnswer: "The number of possible distinct values that attribute Xi can take",
+    explanation: "M is the arity (number of distinct discrete values) that attribute Xi can assume, ensuring that summing the smoothed probabilities over all j distinct values equals 1."
+  },
+  {
+    id: 30,
+    question: "In Gaussian Naïve Bayes for continuous attributes, the class-conditional probability P(Xi = x | Y = yk) is modeled as:",
+    options: [
+      "A multi-dimensional uniform distribution",
+      "A normal distribution with class-specific mean μik and variance σik^2",
+      "A discrete Bernoulli probability mass function",
+      "An exponential decay kernel with parameter λ = μ / σ"
+    ],
+    correctAnswer: "A normal distribution with class-specific mean μik and variance σik^2",
+    explanation: "Gaussian Naïve Bayes models each continuous feature conditioned on class yk as a 1D Normal distribution: P(Xi = x | Y = yk) = (1 / (σik √(2π))) exp{ -(x - μik)^2 / (2σik^2) }."
+  },
+
+  // PART 5: GAUSSIAN NAÏVE BAYES & BAYESIAN NETWORKS (Q31 – Q36)
+  {
+    id: 31,
+    question: "In Gaussian Naïve Bayes, if we constrain the variance to be identical across all classes for feature Xi (i.e., σik = σi), what type of decision boundary is formed between classes?",
+    options: [
+      "Quadratic decision boundary",
+      "Linear decision boundary",
+      "Piecewise step function",
+      "Circular contour only"
+    ],
+    correctAnswer: "Linear decision boundary",
+    explanation: "When variances are assumed equal across classes (homoscedasticity), the quadratic terms x^2 / (2σ^2) in the log-odds ratio cancel out, producing a linear decision boundary."
+  },
+  {
+    id: 32,
+    question: "Even when the conditional independence assumption is violated in real data, Naïve Bayes often performs remarkably well in classification because:",
+    options: [
+      "Accurate probability calibration is not strictly required to obtain the correct arg max class label",
+      "Correlated features automatically cancel each other out mathematically",
+      "The sample variance converges to zero",
+      "It calculates full high-order joint covariance matrices"
+    ],
+    correctAnswer: "Accurate probability calibration is not strictly required to obtain the correct arg max class label",
+    explanation: "Classification decisions depend solely on the arg max ranking, not on exact probability calibration. Even if independence violations skew probabilities towards 0 or 1, the winning class often remains unchanged."
+  },
+  {
+    id: 33,
+    question: "What graph structure constitutes the backbone of a Bayesian Belief Network?",
+    options: [
+      "Undirected cyclic graph",
+      "Directed Acyclic Graph (DAG)",
+      "Fully connected bipartite graph",
+      "Maximum spanning tree"
+    ],
+    correctAnswer: "Directed Acyclic Graph (DAG)",
+    explanation: "A Bayesian Belief Network is formally composed of a Directed Acyclic Graph (DAG) whose nodes represent variables and directed edges represent direct dependencies."
+  },
+  {
+    id: 34,
+    question: "In a Bayesian Network, what does the absence of a directed arc between two variables directly imply?",
+    options: [
+      "The variables have zero covariance under all circumstances",
+      "The two variables are deterministic functions of each other",
+      "A conditional independence assertion between those variables",
+      "One of the variables must be a continuous Gaussian variable"
+    ],
+    correctAnswer: "A conditional independence assertion between those variables",
+    explanation: "The absence of edges encodes conditional independence assertions in the graph, reducing the number of joint distribution parameters."
+  },
+  {
+    id: 35,
+    question: "According to the local Markov property in Bayesian Belief Networks, each node X is conditionally independent of:",
+    options: [
+      "Its immediate children given its parents",
+      "Its non-descendants, given its immediate parents",
+      "All other nodes in the entire network regardless of conditioning",
+      "Its parents, given its children"
+    ],
+    correctAnswer: "Its non-descendants, given its immediate parents",
+    explanation: "The local Markov property dictates that each variable X is conditionally independent of its non-descendants, given its immediate parents in the DAG."
+  },
+  {
+    id: 36,
+    question: "For a set of variables X = {X1, ..., XN} structured in a Bayesian Network, how does the full joint probability distribution factorize?",
+    options: [
+      "P(X1, ..., XN) = ∏i=1^N P(Xi)",
+      "P(X1, ..., XN) = ∏i=1^N P(Xi | parents(Xi))",
+      "P(X1, ..., XN) = ∑i=1^N P(Xi | children(Xi))",
+      "P(X1, ..., XN) = ∏i=1^N P(parents(Xi) | Xi)"
+    ],
+    correctAnswer: "P(X1, ..., XN) = ∏i=1^N P(Xi | parents(Xi))",
+    explanation: "By the Bayesian network factorization rule (chain rule for BNs), the joint probability is the product of conditional probabilities of each variable given its graph parents: P(X1, ..., XN) = ∏i=1^N P(Xi | parents(Xi))."
+  },
+
+  // PART 6: NETWORK TOPOLOGIES, HMMS & INFERENCE (Q37 – Q42)
+  {
+    id: 37,
+    question: "In a common-cause structure where node A points to both B and C (B ← A → C), which condition holds?",
+    options: [
+      "B and C are marginally independent: P(B, C) = P(B)P(C)",
+      "B and C are conditionally independent given A: P(B, C | A) = P(B | A) P(C | A)",
+      "Knowing B gives no information about A",
+      "A is independent of itself given B"
+    ],
+    correctAnswer: "B and C are conditionally independent given A: P(B, C | A) = P(B | A) P(C | A)",
+    explanation: "In a diverging common cause structure (B ← A → C), B and C are generally dependent, but conditioning on the common cause A d-separates them, making them conditionally independent."
+  },
+  {
+    id: 38,
+    question: "Consider a v-structure (independent causes) where A → C ← B. If the common child C is observed, the phenomenon where confirming A reduces the probability of B is known as:",
+    options: [
+      "Markov blanket saturation",
+      "\"Explaining away\"",
+      "Laplace smoothing",
+      "Gibbs sampling bias"
+    ],
+    correctAnswer: "\"Explaining away\"",
+    explanation: "In a collider/v-structure (A → C ← B), causes A and B are marginally independent. Observing effect C makes them dependent: learning that A occurred explains away the evidence for C, reducing the likelihood that B occurred."
+  },
+  {
+    id: 39,
+    question: "In a first-order Markov chain sequence A → B → C, the joint probability simplifies to:",
+    options: [
+      "P(A) P(B | A) P(C | B)",
+      "P(A) P(B) P(C)",
+      "P(C | A, B) P(A)",
+      "P(A | B) P(B | C) P(C)"
+    ],
+    correctAnswer: "P(A) P(B | A) P(C | B)",
+    explanation: "In a linear Markov chain A → B → C, state C depends only on its immediate predecessor B (P(C | A, B) = P(C | B)), giving P(A, B, C) = P(A) P(B | A) P(C | B)."
+  },
+  {
+    id: 40,
+    question: "What are the two core conditional independence assumptions underpinning a standard Hidden Markov Model (HMM) with hidden states St and observations Yt?",
+    options: [
+      "All observations are independent of hidden states; hidden states are uniform",
+      "Hidden state sequence is Markovian; observation Yt depends only on current state St",
+      "Observations follow a Poisson process; transition probabilities are symmetric",
+      "The chain is undirected and cycles are permitted"
+    ],
+    correctAnswer: "Hidden state sequence is Markovian; observation Yt depends only on current state St",
+    explanation: "A standard HMM assumes: (1) the hidden state transition is first-order Markovian: P(St | St-1, ... S1) = P(St | St-1), and (2) observation emissions depend strictly on the current state: P(Yt | S1..St, Y1..Yt-1) = P(Yt | St)."
+  },
+  {
+    id: 41,
+    question: "What is the computational complexity of exact probabilistic inference in an arbitrary, general Bayesian Belief Network?",
+    options: [
+      "Strictly linear in the number of edges O(|E|)",
+      "Polynomial time O(N^3)",
+      "NP-hard",
+      "Constant time O(1)"
+    ],
+    correctAnswer: "NP-hard",
+    explanation: "Gregory Cooper (1990) proved that exact inference in general Bayesian networks is NP-hard, which necessitates approximate inference techniques like Gibbs sampling or belief propagation for polytrees."
+  },
+  {
+    id: 42,
+    question: "When learning a Bayesian Network whose graph structure is known in advance but some variables are hidden/unobservable, which algorithmic method is typically employed?",
+    options: [
+      "Simple empirical count ratio (direct MLE)",
+      "Gradient Ascent / Expectation-Maximization (EM)",
+      "Exhaustive breadth-first search",
+      "Linear perceptron learning rule"
+    ],
+    correctAnswer: "Gradient Ascent / Expectation-Maximization (EM)",
+    explanation: "When latent (hidden) variables exist in a known graph structure, closed-form MLE is unavailable, so the Expectation-Maximization (EM) algorithm or gradient ascent on the log-likelihood is used."
+  },
+
+  // PART 7: SYNTHESIS QUESTIONS (Q43 – Q45)
+  {
+    id: 43,
+    question: "When the graph structure of a Bayesian Network is completely unknown in advance, the learning process requires:",
+    options: [
+      "Exact matrix inversion of the full covariance table",
+      "Heuristic search or constraint-based techniques over the space of DAG structures",
+      "Assuming all features are pairwise independent",
+      "Applying the Gibbs classifier directly"
+    ],
+    correctAnswer: "Heuristic search or constraint-based techniques over the space of DAG structures",
+    explanation: "Learning graph topology from data is an NP-hard problem. It requires heuristic score-based search (e.g., hill-climbing over candidate DAGs) or constraint-based conditional independence tests (e.g., PC algorithm)."
+  },
+  {
+    id: 44,
+    question: "How does a standard Naïve Bayes classifier relate structurally to a Bayesian Belief Network?",
+    options: [
+      "It is a special BN where the target class node is the single parent of all attribute nodes",
+      "It is a Bayesian Network with undirected edges only",
+      "It is equivalent to a fully connected DAG where every node points to every other node",
+      "It cannot be represented as a Bayesian Network"
+    ],
+    correctAnswer: "It is a special BN where the target class node is the single parent of all attribute nodes",
+    explanation: "Naïve Bayes is structurally a Bayesian network where the class node Y is the sole parent directing edges to each observed feature Xi (Y → Xi), with no edges among the features."
+  },
+  {
+    id: 45,
+    question: "If event A and event B are mutually disjoint with P(A) > 0 and P(B) > 0, can they also be statistically independent?",
+    options: [
+      "Yes, mutual exclusivity implies independence",
+      "No, because P(A ∩ B) = 0, whereas independence requires P(A ∩ B) = P(A)P(B) > 0",
+      "Yes, provided their sample space is infinite",
+      "Only if both events have probability 0.5"
+    ],
+    correctAnswer: "No, because P(A ∩ B) = 0, whereas independence requires P(A ∩ B) = P(A)P(B) > 0",
+    explanation: "Mutually disjoint events have P(A ∩ B) = 0. Independence requires P(A ∩ B) = P(A)P(B). If P(A) > 0 and P(B) > 0, their product is strictly positive, making independence impossible. In fact, disjoint events are maximally dependent: knowing A occurred guarantees B did not."
+  }
+];
+
 // Metadata & Configuration for all available weeks
 const WEEKS_DATA = {
   1: {
@@ -1134,9 +1694,22 @@ const WEEKS_DATA = {
     topics: ["Linear Regression & LMS", "Gradient Descent / SGD", "Decision Trees & ID3", "Entropy & Information Gain", "GINI Index & Splitting", "Overfitting & Pruning"],
     totalQuestions: WEEK2_QUESTIONS.length,
     questions: WEEK2_QUESTIONS
+  },
+  4: {
+    id: 4,
+    title: "Week 4",
+    subheading: "Week 4 • Probability & Bayesian Learning",
+    name: "Probability & Bayesian Learning",
+    heroBadge: "45 Questions Available",
+    heroTitle: "Prepare Your Practice Session",
+    heroDesc: "Test your understanding on Probability Axioms, MAP vs ML Hypotheses, Bayes Optimal Classifier, Naïve Bayes, Gaussian NB, and Bayesian Belief Networks.",
+    topics: ["Probability Axioms & Distributions", "MAP vs ML Hypotheses", "Bayes Optimal & Gibbs", "Naïve Bayes Classifier", "Gaussian NB & Smoothing", "Bayesian Networks & HMMs"],
+    totalQuestions: WEEK4_QUESTIONS.length,
+    questions: WEEK4_QUESTIONS
   }
 };
 
 // Global reference for backwards compatibility
 let CURRENT_WEEK = 1;
 let QUESTIONS_BANK = WEEK1_QUESTIONS;
+
